@@ -1,0 +1,54 @@
+class Solution {
+public:
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+        vector<int> numtemp = nums1;
+        nums1.clear();
+
+        vector<int>::iterator it1 = numtemp.begin();
+        vector<int>::iterator it2 = nums2.begin();
+        int l_1 = 1;
+        int l_2 = 1;
+        while(it1 != numtemp.end() && l_1 <= m && it2 != nums2.end() && l_2 <= n)
+        {
+            if(*it1 > *it2)
+            {
+                nums1.push_back(*it2);
+                it2++;
+                l_2++;
+            }
+            else
+            {
+                nums1.push_back(*it1);
+                it1++;
+                l_1++;
+            }
+            if(l_1 > m)
+            {
+                break;
+            }
+            if(l_2 > n)
+            {
+                break;
+            }
+        }
+        if(it1 != numtemp.end() && l_1 <= m)
+        {
+            while(it1 != numtemp.end() && l_1 <= m)
+            {
+                nums1.push_back(*it1);
+                it1++;
+                l_1++;
+            }
+        }
+        if(it2 != nums2.end() && l_2 <= n)
+        {
+            while(it2 != nums2.end() && l_2 <= n)
+            {
+                nums1.push_back(*it2);
+                it2++;
+                l_2++;
+            }
+        }
+
+    }
+};
